@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>First 6 months pacing</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <p class="kicker"><a href="index.html">← Library</a></p>
+    <h1>First 6 months pacing</h1>
+    <p class="lede">Built from IS_SITE.ALIGN in js/data.js. Change that object and refresh this page.</p>
+  </header>
+  <section id="tables"></section>
+  <script src="js/data.js"></script>
+  <script>
+    const S = IS_SITE;
+    const root = document.getElementById("tables");
+    [5, 6, 7, 8].forEach(function (g) {
+      let h = "<h2>Grade " + g + "</h2><table><tr><th>Window</th>";
+      S.SUBJECTS.forEach(function (sub) { h += "<th>" + sub + "</th>"; });
+      h += "</tr>";
+      S.WINDOWS.forEach(function (win, i) {
+        h += "<tr><td>" + win.id + " " + win.label + "<br>" + win.months + "</td>";
+        S.SUBJECTS.forEach(function (sub) {
+          h += "<td>" + S.ALIGN[g][sub][i] + "</td>";
+        });
+        h += "</tr>";
+      });
+      h += "</table>";
+      root.innerHTML += h;
+    });
+  </script>
+</body>
+</html>
